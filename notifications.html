@@ -1,0 +1,61 @@
+
+<!--Script by hscripts.com-->
+<!-- more scripts @ https://www.hscripts.com -->
+<script type="text/javascript">
+//set the bookmark image position(topright,topleft,bottomright,bottomleft)
+var corner = "topright";
+var url = window.location;
+var title = document.title;
+document.write('<div id=ddd style="position: absolute; visibility: visible; top: 5px; left:5px;">'); document.write('<a style="font-size:14px; text-decoration: none;" href="javascript:bookmark(title, url)" title="click here to bookmark this page"><img src="hbookmark/book.gif" alt="Bookmark" border=0"><sup><span style="background-color:seashell; font-size:10px;">H</span></sup></a></div>');
+var os;
+if(document.layers)
+os = "n4";
+else if(document.getElementById&&!document.all)
+os = "n6";
+else if(document.all)
+os = "ie";
+function run()
+{
+if(os == "ie"){
+pwidth = window.document.body.offsetWidth;
+pheight = window.document.body.offsetHeight;
+stop = document.body.scrollTop;
+sleft = document.body.scrollLeft;
+}else{
+pwidth = window.innerWidth;
+pheight = window.innerHeight;
+stop = window.pageYOffset;
+sleft = window.pageXOffset;
+}
+var dda = document.getElementById('ddd');
+if(corner == "topleft"){
+dda.style.top = (stop)+"px";
+dda.style.left = (sleft+15)+"px";
+}else if(corner == "topright"){
+dda.style.top = (stop)+"px";
+dda.style.left = (sleft+pwidth-110)+"px";
+}else if(corner == "bottomleft"){
+dda.style.top = (stop+pheight-45)+"px";
+dda.style.left = (sleft+15)+"px";
+}else if(corner == "bottomright"){
+dda.style.top = (stop+pheight-40)+"px";
+dda.style.left = (sleft+pwidth-110)+"px";
+}
+setTimeout('run()',5);
+}
+function bookmark(title,url){var ua = $.browser;if(window.sidebar){if (ua.version.slice(0,3)>22){alert('Press ' + (navigator.userAgent.toLowerCase().indexOf('mac') != - 1 ? 'Command/Cmd' : 'CTRL') + ' + D to bookmark this page.');}else{window.sidebar.addPanel(title,url,"");}}else if(window.opera && window.print){
+var elem = document.createElement('a');
+elem.setAttribute('href',url);
+elem.setAttribute('title',title);
+elem.setAttribute('rel','sidebar');
+elem.click();}else if(os == "ie")
+{
+window.external.AddFavorite(url,title);
+}
+else
+{alert('Press CTRL + D to bookmarksad this page.');
+}
+}
+document.onload = run();
+</script>
+<!-- Script by hscripts.com -->
